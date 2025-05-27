@@ -17,10 +17,11 @@ document.getElementById("prepareButton").addEventListener("click", async functio
         };
         mediaRecorder.onstop = function() {
             console.log("Recording stopped");
-            const audioBlob = new Blob(bufferedChunks);
+            const audioBlob = new Blob(bufferedChunks, { type: mediaRecorder.mimeType });
             const audioUrl = URL.createObjectURL(audioBlob);
             const audioElement = document.getElementById("recordedAudio");
             audioElement.src = audioUrl;
+            bufferedChunks = []; // Clear the buffer for the next recording
         };
         console.log("Recording started");
     } catch (error) {
