@@ -2,7 +2,7 @@ let mediaRecorder;
 const availableSize = document.getElementById("available-size");
 const MEDIA_RECORDER_TIME_SLICE = 1000; // 1 second
 
-document.getElementById("prepareButton").addEventListener("click", async function() {
+async function startRecording() {
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         let bufferedChunks = [];
@@ -24,15 +24,16 @@ document.getElementById("prepareButton").addEventListener("click", async functio
             bufferedChunks = []; // Clear the buffer for the next recording
         };
         console.log("Recording started");
+        mediaRecorder?.start(MEDIA_RECORDER_TIME_SLICE);
     } catch (error) {
         console.error("Error accessing media devices.", error);
     }
-});
+}
 
 document.getElementById("playStartButton").addEventListener("click", function() {
     const audioElement = document.getElementById("sampleAudio");
     audioElement.onended = function() {
-        mediaRecorder?.start(MEDIA_RECORDER_TIME_SLICE);
+        startRecording();
     };
     audioElement.play().catch(error => {
         console.error("Error playing audio:", error);
@@ -49,7 +50,7 @@ document.getElementById("playButton").addEventListener("click", function() {
 });
 
 document.getElementById("startButton").addEventListener("click", function() {
-    mediaRecorder?.start(MEDIA_RECORDER_TIME_SLICE);
+    startRecording();
 });
 
 document.getElementById("stopButton").addEventListener("click", function() {
