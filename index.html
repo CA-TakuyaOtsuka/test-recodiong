@@ -1,0 +1,34 @@
+<html>
+    <body>
+        <div>
+            <h3>Control</h3>
+            <div>
+                <p>はじめに「Prepare」ボタンを押して、マイクの権限を許可</p>
+                <button id="prepareButton">Prepare</button>
+            </div>
+            <div>
+                <button id="playStartButton">Play & Start</button>
+                <button id="playButton">Play</button>
+            </div>
+            <div>
+                <button id="startButton">Start</button>
+                <button id="stopButton">Stop</button>
+            </div>
+        </div>
+        <div>
+            <h3>Recording Audio</h3>
+            <audio id="recordedAudio" controls></audio>
+        </div>
+        <div>
+            <h3>Sample Audio</h3>
+            <audio id="sampleAudio" src="sample.wav" controls></audio>
+        </div>
+        <div>
+            <h3>Log</h3>
+            <div id="log">
+                <p>Data available size: <span id="available-size"></span></p>
+            </div>
+        </div>
+        <script src="./sample.js"></script>
+    </body>
+</html>
